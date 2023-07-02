@@ -1,0 +1,67 @@
+$indent: 12px
+$fs: 1.25rem
+$text_color: #f0f0f0
+.brad
+	border-radius: $indent
+.brad_button
+	border-radius: $indent
+
+@mixin value_container($side)
+	display: flex
+	justify-content: $side
+	align-items: center
+	&::before
+		display: block
+		content: attr(value)
+		height: 1rem
+		line-height: 1rem
+
+@for $current_col from 1 through	4
+	.col_#{$current_col}
+		grid-column: span $current_col
+
+body
+	margin: 0
+	color: $text_color
+	font-size: $fs
+	box-sizing: border-box
+	background-color: #10131c
+
+.calc_wrapper
+	min-height: 100vh
+	display: flex
+	justify-content: center
+	align-items: center
+
+.calc
+	border: 1px solid #333
+	@extend .brad
+	margin: 1.75rem
+	background-color: #212532
+	border: #666666
+	padding: $indent
+	width: max-content
+
+	display: grid
+	grid-template-columns: repeat(4, 1fr)
+	gap: $indent
+
+.display
+	background-color: #333849
+	@extend .brad_button
+	padding: 1.25rem 0.75rem
+	outline: none
+	text-align: right
+	border-width: 0
+	color: $text_color
+	font-size: 1.15 * $fs
+	@include value_container(flex-end)
+
+.button
+	padding: 0.75rem
+	@extend .brad_button
+	@include value_container(center)
+
+	background-color: #333849
+	&.--dedicated
+		background-color: #5d68e2
