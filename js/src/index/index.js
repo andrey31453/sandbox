@@ -7,6 +7,8 @@ const { sandboxes } = sandboxes_json
     if (!sandbox_links) return
 
     sandboxes.forEach((sandbox) => {
+      if (sandbox === 'index') return
+
       const sandbox_link = document.createElement('a')
       sandbox_link.textContent = sandbox
       sandbox_link.href = `${sandbox}.html`
